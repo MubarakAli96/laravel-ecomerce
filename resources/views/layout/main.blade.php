@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="{{asset('frontend/assets/css/plugins/animate.min.css')}}" />
     <link rel="stylesheet" href="{{asset('frontend/assets/css/main.css?v=5.3')}}" />
     <link rel="stylesheet" href="{{asset('frontend/assets/css/plugins/slider-range.css')}}" />
+    <script src="https://js.stripe.com/v3/"></script>
+
 
 </head>
 
@@ -133,12 +135,12 @@
         </div>
     </div>
 
-    @include('layout.inc.header');
+    @include('layout.inc.header')
 
-    @yield('main');
+    @yield('main')
 
 
-    @include('layout.inc.footer');
+    @include('layout.inc.footer')
 
 
 
@@ -184,6 +186,7 @@
     <script src="{{asset('frontend/assets/js/main.js?v=5.3')}}"></script>
     <script src="{{asset('frontend/assets/js/search.js?v=5.3')}}"></script>
     <script src="{{asset('frontend/assets/js/shop.js?v=5.3')}}"></script>
+    @yield('bottom_script')
 
 </body>
 

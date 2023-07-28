@@ -184,12 +184,17 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
 //checkout Routes
 
 Route::get('/checkout', [\App\Http\Controllers\CheckOutController::class, 'index'])->name('checkout');
+Route::post('/checkout-data/store', [\App\Http\Controllers\CheckOutController::class, 'CheckStore'])->name('checkout.store');
+
+
+//stripe order
+Route::post('/stripe/order', [\App\Http\Controllers\StripeController::class, 'stripe_payment'])->name('stripe.order');
 
 
 
 
 //Shopping cart route
-Route::get('/sadsf', [\App\Http\Controllers\ProductController::class, 'productList'])->name('products.list');
+Route::get('/carts', [\App\Http\Controllers\ProductController::class, 'productList'])->name('products.list');
 Route::post('/addtocart', [\App\Http\Controllers\CartController::class, 'addToCart'])->name('cart.add');
 Route::get('/cart', [\App\Http\Controllers\CartController::class, 'showCart'])->name('cart.show');
 Route::delete('/cart/{id}', [\App\Http\Controllers\CartController::class, 'removeFromCart'])->name('cart.remove');

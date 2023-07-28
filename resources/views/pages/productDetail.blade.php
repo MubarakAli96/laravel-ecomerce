@@ -119,6 +119,7 @@
                         <input type="hidden" name="products_id" value="{{ $products->id }}">
                         <input type="hidden" name="products->color" value="{{ $products->color }}">
                         <input type="hidden" name="products->size" value="{{ $products->size }}">
+                        <input type="hidden" name="vendor_id" value="{{ $products->vendor_id }}">
                         <input type="number" name="quantity" value="1" min="1">
 
                         <button type="submit">Add to Cart</button>
@@ -135,6 +136,11 @@
                   <div class="font-xs">
                     <ul class="mr-50 float-start">
                       <li class="mb-5">Brand: <span class="text-brand">{{$products->brand->name}}</span></li>
+                      @if($products->vendor_id == NULL)
+                      <li> Owner Product</li>
+                      @else
+                      <li class="mb-5">VendorID: <span class="text-brand">{{$products->vendor_id}}</span></li>
+                      @endif
                       <li>Category: <span class="text-brand">{{$products->category->name}}</span></li>
                       <li class="mb-5">SubCategory:<span class="text-brand"> {{$products->sub_category->name}}</span>
                       </li>

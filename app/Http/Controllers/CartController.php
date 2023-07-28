@@ -21,6 +21,7 @@ class CartController extends Controller
         $quantity = $request->input('quantity');
         $color = $request->input('color');
         $size = $request->input('size');
+        $vendor_id = $request->input('vendor_id');
 
 
         // Find the product
@@ -40,11 +41,13 @@ class CartController extends Controller
             $cart = Cart::create([
                 'user_id' => auth()->id(),
                 'products_id' => $productId,
+                'price' => $quantity,
                 'quantity' => $quantity,
                 'size' => $size,
                 'color' => $color,
+                'vendor_id' => $vendor_id,
             ]);
-            // dd($cart);
+            dd($cart);
         }
 
         return redirect()->route('cart.show')->with('success', 'Product added to cart successfully!');

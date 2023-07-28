@@ -35,9 +35,9 @@
                 </th>
                 <th scope="col" colspan="2">Product</th>
                 <th scope="col">Unit Price</th>
-                <th scope="col">Quantity</th>s
                 <th scope="col">Color</th>
                 <th scope="col">Size</th>
+                <th scope="col">Quantity</th>
                 <th scope="col">Subtotal</th>
                 <th scope="col" class="end">Remove</th>
               </tr>
@@ -46,7 +46,11 @@
               @if(session('success'))
               <p>{{ session('success') }}</p>
               @endif
+              @php
+              $subtotal = 0;
+              @endphp
               @forelse (auth()->user()->cart as $item)
+
               <tr class="pt-30">
                 <td class="custome-checkbox pl-30">
                   <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" value="">
@@ -66,14 +70,16 @@
                   </div>
                 </td>
                 <td class="price" data-title="Price">
-                  <h4 class="text-body">{{$item->product->size}}</h4>
+                  <h4 class="text-body">{{$item->product->discount_price}}</h4>
+                </td>
+
+                <td class="price" data-title="Price">
+                  <h4 class="text-body">{{$item->color}}</h4>
                 </td>
                 <td class="price" data-title="Price">
-                  <h4 class="text-body"> {{$item->product->color}}</h4>
+                  <h4 class="text-body"> {{$item->size}}</h4>
                 </td>
-                <td class="price" data-title="Price">
-                  <h4 class="text-body">$ {{$item->product->selling_price}}</h4>
-                </td>
+
                 <td class="text-center detail-info" data-title="Stock">
                   <div class="detail-extralink mr-15">
                     <div class="detail-qty border radius">
@@ -86,7 +92,8 @@
                 <td class="price" data-title="Price">
                   @php
                   // $sub_total = $item->product->selling_price * $item->quantity
-                  $total = $item->product->selling_price * $item->quantity
+                  $total = $item->product->discount_price * $item->quantity;
+                  $subtotal = $subtotal + $total;
                   @endphp
                   <h4 class="text-brand">{{ $total}}</h4>
                 </td>
@@ -127,10 +134,8 @@
                         <h6 class="text-muted">Subtotal</h6>
                       </td>
                       <td class="cart_total_amount">
-                        @php
-                        $sub = $total + $total;
-                        @endphp
-                        <h4 class="text-brand text-end">{{ $sub }}</h4>
+
+                        <h4 class="text-brand text-end">{{ $subtotal }}</h4>
                       </td>
                     </tr>
                     <tr>
@@ -144,7 +149,6 @@
                       </td>
                       <td class="cart_total_amount">
                         <h5 class="text-heading text-end">Free</h4>
-                          < /td>
                     </tr>
                     <tr>
                       <td class="cart_total_label">
@@ -152,7 +156,6 @@
                       </td>
                       <td class="cart_total_amount">
                         <h5 class="text-heading text-end">United Kingdom</h4>
-                          < /td>
                     </tr>
                     <tr>
                       <td scope="col" colspan="2">
@@ -164,7 +167,7 @@
                         <h6 class="text-muted">Total</h6>
                       </td>
                       <td class="cart_total_amount">
-                        <h4 class="text-brand text-end"> {{$sub }}</h4>
+                        <h4 class="text-brand text-end"> {{$subtotal }}</h4>
                       </td>
                     </tr>
                   </tbody>

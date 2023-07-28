@@ -72,7 +72,7 @@
                                 </form>
                             </div>
                             @php
-                            $carts = \App\Models\Cart::all();
+                            $carts = App\Models\Cart::where('user_id', auth()->id())->get();
                             @endphp
                             <div class="header-action-icon-2">
                                 <a href="shop-wishlist.html">
@@ -110,14 +110,15 @@
                                     </ul>
                                     <div class="shopping-cart-footer">
                                         <div class="shopping-cart-total">
-                                            @php
-                                            $total = $cart->quantity * $cart->product->discount_price;
+                                            {{-- @php
+                                            $carts = App\Models\Cart::all();
+                                            $total = $carts->quantity * $carts->product->discount_price;
                                             @endphp
-                                            <h4>Total <span>${{$total}}</span></h4>
+                                            <h4>Total <span>${{$total}}</span></h4> --}}
                                         </div>
                                         <div class="shopping-cart-button">
-                                            <a href="shop-cart.html" class="outline">View cart</a>
-                                            <a href="shop-checkout.html">Checkout</a>
+                                            <a href="{{route('cart.show')}}" class="outline">View cart</a>
+                                            <a href="{{route('checkout')}}">Checkout</a>
                                         </div>
                                     </div>
                                 </div>
