@@ -47,7 +47,7 @@ class CartController extends Controller
                 'color' => $color,
                 'vendor_id' => $vendor_id,
             ]);
-            dd($cart);
+            // dd($cart);
         }
 
         return redirect()->route('cart.show')->with('success', 'Product added to cart successfully!');

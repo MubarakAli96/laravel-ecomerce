@@ -30,7 +30,7 @@
 
             <div class="row">
               <div class="form-group col-lg-6">
-                <input type="text" required="" name="name" placeholder="{{Auth::user()->name}}">
+                <input type="text" required="" value="{{Auth::user()->name}}" name="name" placeholder="Name">
               </div>
               <div class="form-group col-lg-6">
                 <input type="email" required="" name="email" value="{{Auth::user()->email}}" placeholder="Email *">

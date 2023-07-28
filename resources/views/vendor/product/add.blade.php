@@ -86,7 +86,7 @@
                     <div class="col-md-6">
                       <label for="inputCostPerPrice" class="form-label">Product Code</label>
                       <input type="text" name="product_code" class="form-control" id="inputCostPerPrice"
-                        placeholder="00.00">
+                        placeholder="00.00" disabled>
                     </div>
                     <div class="col-md-6">
                       <label for="inputStarPoints" class="form-label">Product QTY</label>

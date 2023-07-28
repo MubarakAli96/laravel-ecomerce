@@ -6,7 +6,7 @@ $(document).ready(function(){
   var category_id =$(this).val();
   if(category_id){
     $.ajax({
-      url: '/sub_catgory/subcategory/ajax/'+category_id,
+      url: '/public/sub_catgory/subcategory/ajax/'+category_id,
       type: "GET",
       dataType: "json",
       success: function(data){

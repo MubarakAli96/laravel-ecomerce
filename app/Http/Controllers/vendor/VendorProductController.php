@@ -60,7 +60,7 @@ class VendorProductController extends Controller
             'name'               => $request->name,
             'slug'               => Str::slug($request->name, '-'),
 
-            'product_code'       => $request->product_code,
+            'product_code'       => 'PRO-' . mt_rand(100000000, 999999999),
             'product_qty'        => $request->product_qty,
             'product_tags'       => $request->product_tags,
             'product_size'       => $request->product_size,

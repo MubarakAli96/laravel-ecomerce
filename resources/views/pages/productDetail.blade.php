@@ -120,7 +120,7 @@
                         <input type="hidden" name="products->color" value="{{ $products->color }}">
                         <input type="hidden" name="products->size" value="{{ $products->size }}">
                         <input type="hidden" name="vendor_id" value="{{ $products->vendor_id }}">
-                        <input type="number" name="quantity" value="1" min="1">
+                        <input type="number" style="width: 60px; height: 55px;" name="quantity" value="1" min="1">
 
                         <button type="submit">Add to Cart</button>
                       </form>

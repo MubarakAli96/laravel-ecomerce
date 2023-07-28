@@ -32,7 +32,7 @@ class CheckOutController extends Controller
         if ($request->payment_option == 'stripe') {
             return view('pages.payment.stripe', compact('data'));
         } else if ($request->payment_option == 'cash') {
-            return view('pages.payment.cash', compact('data', 'cart_total'));
+            return view('pages.payment.cash', compact('data'));
         } else {
             return 'card page';
         }
