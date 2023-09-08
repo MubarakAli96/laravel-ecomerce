@@ -34,17 +34,10 @@
               </a>
               <div class="header-notifications-list">
 
-
-
-
-
-
                 @php
                 $user = Auth::user();
 
                 @endphp
-
-
 
                 @forelse ($user->notifications as $notification)
                 <a class="dropdown-item" href="javascript:;">
@@ -235,7 +228,8 @@
       <div class="user-box dropdown">
         <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button"
           data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="{{ Auth::user()->profile_image}}" alt="Admin" class="rounded-circle p-1 bg-primary" width="40">
+          <img src="{{ asset( Auth::user()->profile_image)}}" alt="Admin" class="rounded-circle p-1 bg-primary"
+            width="40">
           <div class="user-info ps-3">
             <p class="user-name mb-0">{{Auth::user()->name}}</p>
             <p class="designattion mb-0">{{Auth::user()->role}}</p>

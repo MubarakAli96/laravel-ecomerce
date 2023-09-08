@@ -1,7 +1,7 @@
 <div class="sidebar-wrapper" data-simplebar="true">
   <div class="sidebar-header">
     <div>
-      <img src="assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
+      <img src="{{asset('backend/assets/images/images.png')}}" class="logo-icon" alt="logo icon">
     </div>
     <div>
       <h4 class="logo-text">VendorPanel</h4>
@@ -55,7 +55,7 @@
 
 
 
-    <li class="menu-label">Backend Pages</li>
+    <li class="menu-label">Eccommerce Products Details</li>
     @if(Auth::check() && Auth::user()->status == 1)
     <li>
       <a href="javascript:;" class="has-arrow">
@@ -124,6 +124,26 @@
       <li> <a href="#"><i class="fadeIn animated bx bx-pen"></i>Edit Brands</a>
       </li>
     </ul>
+  </li>
+  @else
+  @endif
+
+
+  @if(Auth::check() && Auth::user()->status == 1)
+  <li>
+    <a href="javascript:;" class="has-arrow">
+      <div class="parent-icon"><i class='bx bx-cart'></i>
+      </div>
+      <div class="menu-title">Orders</div>
+    </a>
+    <ul>
+      <li> <a href="{{route('orders')}}"><i class="fadeIn animated bx bx-show"></i>MY Orders</a>
+      </li>
+      {{-- <li> <a href="{{route('brand.add')}}"><i class="fadeIn animated bx bx-bell-plus"></i> Add Brands</a>
+  </li>
+  <li> <a href="#"><i class="fadeIn animated bx bx-pen"></i>Edit Brands</a>
+  </li> --}}
+  </ul>
   </li>
   @else
   @endif

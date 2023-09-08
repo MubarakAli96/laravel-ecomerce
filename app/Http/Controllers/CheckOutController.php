@@ -17,6 +17,8 @@ class CheckOutController extends Controller
     }
     public function CheckStore(Request $request)
     {
+
+
         $data = array();
         $data['user_id'] = Auth::user()->id;
         $data['name'] = $request->name;

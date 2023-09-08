@@ -77,6 +77,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/banner/create', 'createPageBanner')->name('add.banner');
         Route::post('/admin/banner/store', 'storeBanner')->name('banner.store');
 
+        //orders
+        Route::get('/admid/orders', 'All_orders')->name('orders');
+
         //brands
         Route::controller(BrandController::class)
             ->prefix('brand')->group(function () {
@@ -162,6 +165,10 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
         // Route::get('/vendor_logout', 'destroyvendor')->name('vendor.logout');
         Route::post('/vendor/logout', 'vend_logout')->name('vendor.logout');
 
+        //vendor orders
+
+        Route::get('/vender/orders', 'vendor_orders')->name('orders');
+
 
         //user profile
         Route::get('vendor/vendor_profile', 'vendorProfile')->name('vendor_profile');
@@ -189,6 +196,7 @@ Route::post('/checkout-data/store', [\App\Http\Controllers\CheckOutController::c
 
 //stripe order
 Route::post('/stripe/order', [\App\Http\Controllers\StripeController::class, 'stripe_payment'])->name('stripe.order');
+Route::post('/cash/order', [\App\Http\Controllers\StripeController::class, 'cash_payment'])->name('cash.order');
 
 
 

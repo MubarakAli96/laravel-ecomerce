@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderMail;
 use Carbon\Carbon;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class StripeController extends Controller
 {
@@ -53,6 +55,21 @@ class StripeController extends Controller
             'status' => 'pending',
 
         ]);
+
+        // MAIL SEND AFTER STRIPE  COMPLETE
+        $mail = Order::findOrFail($order_id);
+
+        $data = [
+            'invoice_no' => $mail->invoice_no,
+            'name' => $mail->name,
+            'email' => $mail->email,
+            'amount' => $mail->amount,
+
+        ];
+        Mail::to($request->email)->send(new OrderMail($data));
+
+
+        // END MAIL 
         $carts = Cart::where('user_id', auth()->id())->get();
         foreach ($carts as $cart) {
             OrderItem::insert([
@@ -65,7 +82,53 @@ class StripeController extends Controller
             ]);
         }
 
+
         $carts->delete();
+        $carts->refresh();
+
+        return redirect()->rout('/carts');
+    } //end of method
+
+    public function cash_payment(Request $request)
+    {
+
+        $order_id = Order::insertGetId([
+            'user_id' => Auth::user()->id,
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone_no' => $request->phone_no,
+            'address' => $request->address,
+            'country' => $request->country,
+            'city' => $request->city,
+            'postal_code' => $request->postal_code,
+            'additional_info' => $request->additional_info,
+
+            'payment_type' => 'cash on delivery',
+            'payment_method' => 'cash on delivery',
+            'amount' => $request->amount,
+            'currency' => 'usd',
+
+            'invoice_no' => 'ECS' . mt_rand(10000000, 99999999),
+            'order_date' => Carbon::now()->format('d F Y'),
+            'order_month' => Carbon::now()->format('F'),
+            'order_year' => Carbon::now()->format('Y'),
+
+            'status' => 'pending',
+
+        ]);
+        $carts = Cart::where('user_id', auth()->id())->get();
+        foreach ($carts as $cart) {
+            OrderItem::insert([
+                'order_id' => $order_id,
+                'product_id' => $cart->id,
+                'vendor_id' => $cart->vendor_id,
+                'color' => $cart->color,
+                'size' => $cart->size,
+                'quantity' => $cart->quantity
+            ]);
+        }
+
+        $carts->destory();
         $carts->refresh();
 
         return redirect()->rout('/carts');

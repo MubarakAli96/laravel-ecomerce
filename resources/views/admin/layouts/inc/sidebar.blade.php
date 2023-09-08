@@ -1,7 +1,7 @@
 <div class="sidebar-wrapper" data-simplebar="true">
   <div class="sidebar-header">
     <div>
-      <img src="assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
+      <img src="{{asset('backend/assets/images/images.png')}}" class="logo-icon" alt="logo icon">
     </div>
     <div>
       <h4 class="logo-text">Admin-Panel</h4>
@@ -120,6 +120,20 @@
         </li>
         <li> <a href="#"><i class="fadeIn animated bx bx-pen"></i>Edit Brands</a>
         </li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="javascript:;" class="has-arrow">
+        <div class="parent-icon"><i class='bx bx-cart'></i>
+        </div>
+        <div class="menu-title">Orders</div>
+      </a>
+      <ul>
+        <li> <a href="{{route('orders')}}"><i class="fadeIn animated bx bx-show"></i>Pending_Orders</a>
+        </li>
+        {{-- <li> <a href="#"><i class="fadeIn animated bx bx-pen"></i>Edit Brands</a>
+        </li> --}}
       </ul>
     </li>
 

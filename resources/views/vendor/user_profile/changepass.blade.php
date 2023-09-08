@@ -1,5 +1,5 @@
-@extends('admin.layouts.main')
-@section('main')
+@extends('vendor.layouts.vendor')
+@section('vendor')
 
 
 <!--start page wrapper -->

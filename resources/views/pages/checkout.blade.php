@@ -41,11 +41,11 @@
                 <div class="custom_select">
                   <select name="country" class="form-control select-active">
                     <option value="">Select Country...</option>
-                    <option value="AX">Pakistan</option>
-                    <option value="AF">iran</option>
-                    <option value="AL">Iraq</option>
-                    <option value="DZ">france</option>
-                    <option value="AD">America</option>
+                    <option value="Pakistan">Pakistan</option>
+                    <option value="india">iran</option>
+                    <option value="Iraq">Iraq</option>
+                    <option value="France">france</option>
+                    <option value="America">America</option>
                   </select>
                 </div>
               </div>
@@ -76,11 +76,11 @@
                 <div class="custom_select">
                   <select name="city" class="form-control select-active">
                     <option value="">Select an city...</option>
-                    <option value="AX">Karachi</option>
-                    <option value="AF">dehli</option>
-                    <option value="AL">lahore</option>
-                    <option value="DZ">gilgit</option>
-                    <option value="AD">kashmir</option>
+                    <option value="Karchi">Karachi</option>
+                    <option value="dehli">dehli</option>
+                    <option value="Lahore">lahore</option>
+                    <option value="Gilgit">gilgit</option>
+                    <option value="Kashmir">kashmir</option>
 
                   </select>
                 </div>

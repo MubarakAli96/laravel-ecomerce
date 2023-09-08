@@ -36,6 +36,7 @@ class RegisteredUserController extends Controller
             'role' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'g-recaptcha-response' => 'recaptcha',
         ]);
         if ($request->hasFile('profile_image')) {
             $img = $request->profile_image;

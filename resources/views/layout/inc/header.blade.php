@@ -152,8 +152,15 @@
                                                     class="fi fi-rs-settings-sliders mr-10"></i>Setting</a>
                                         </li>
                                         <li>
-                                            <a href="page-login.html"><i class="fi fi-rs-sign-out mr-10"></i>Sign
-                                                out</a>
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf
+
+                                                <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
+                                                this.closest('form').submit();"
+                                                    class="fi fi-rs-settings-sliders mr-10">
+                                                    {{ __('Sing Out') }}
+                                                </x-dropdown-link>
+                                            </form>
                                         </li>
                                     </ul>
                                 </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\vendor;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -98,5 +99,14 @@ class VendorController extends Controller
             'password' => Hash::make($request->new_password)
         ]);
         return back()->with("status", "Password Changed Successfully");
+    }
+
+    //vendor orders
+
+    public function vendor_orders()
+    {
+        $id = Auth::user()->id;
+        $orders = OrderItem::with('order')->where('vendor_id', $id)->orderBy('id', 'DESC')->get();
+        return view('vendor.vendor_orders.index', compact('orders'));
     }
 }

@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\admin;
 
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Banner;
 use App\Models\Slider;
+use App\Models\Contact;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
-use App\Models\Contact;
-use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
@@ -200,5 +201,12 @@ class AdminController extends Controller
             'password' => Hash::make($request->new_password)
         ]);
         return back()->with("status", "Password Changed Successfully");
+    } //
+
+    //orders get all
+    public function All_orders()
+    {
+        $orders = Order::where('status', 'pending')->orderBy('id', 'DESC')->get();
+        return view('admin.order.index', compact('orders'));
     }
 }

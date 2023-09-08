@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Rules\Password;
 use App\Models\User;
-use App\Notifications\VendorRegisteration;
+use App\Rules\ReCaptcha;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Notifications\VendorRegisteration;
 use Illuminate\Support\Facades\Notification;
 
 class BecomeVendorController extends Controller
@@ -18,6 +19,11 @@ class BecomeVendorController extends Controller
     }
     public function StoreVEndor(Request $request)
     {
+        $request->validate([
+
+            'g-recaptcha-response' => ['required', new ReCaptcha]
+        ]);
+
         $vendorReg = User::where('role', 'admin')->get();
 
         $user = User::create([
